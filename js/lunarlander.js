@@ -192,7 +192,7 @@ function ufo(y) {
   pop();
 
   //glass
-  fill(169, 196, 195, 50);
+  fill(169, 196, 195, 100);
   noStroke();
   beginShape();
   vertex(width / 2 - 60, y - 25);
@@ -205,9 +205,9 @@ function ufo(y) {
     y - 25
   );
   bezierVertex(
-    width / 2 + 50,
-    y - 5 + 50,
-    width / 2 - 25,
+    width / 2 + 30,
+    y + 10,
+    width / 2 - 50,
     y - 10,
     width / 2 - 60,
     y - 25
