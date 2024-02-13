@@ -1,6 +1,3 @@
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-}
 function paw(x, y) {
   noStroke();
   if (mouseIsPressed || keyIsDown(32)) {
@@ -297,6 +294,24 @@ function setup() {
     starY.push(y);
     starAlpha.push(alpha);
   }
+
+  // Create an audio element
+  const bgMusic = new Audio("js/intospace.mp3");
+  bgMusic.loop = true;
+  bgMusic.volume = 0.5;
+  bgMusic.preload = "auto";
+  // Add an event listener to play the music when it's loaded
+  bgMusic.addEventListener("canplay", function () {
+    // Play the music
+    bgMusic.play();
+    console.log("Audio started playing.");
+  });
+  // Add an event listener to handle errors during audio loading
+  bgMusic.addEventListener("error", function (err) {
+    console.error("Error loading audio:", err);
+  });
+  // Log when setup is complete
+  console.log("Setup complete.");
 }
 
 function draw() {
