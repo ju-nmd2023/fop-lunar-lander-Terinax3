@@ -206,31 +206,33 @@ function draw() {
   if (y <= 200) {
     ufoshadow(0, 0);
   } else if (y <= 250) {
-    ufoshadow(80, 25);
+    ufoshadow(80, 30);
+  } else if (y <= 270) {
+    ufoshadow(90, 35);
   } else if (y <= 300) {
-    ufoshadow(130, 30);
+    ufoshadow(120, 40);
   } else if (y <= 350) {
-    ufoshadow(180, 40);
+    ufoshadow(150, 45);
   } else if (y <= 400) {
-    ufoshadow(200, 50);
+    ufoshadow(170, 50);
   } else if (y <= 450) {
-    ufoshadow(210, 65);
+    ufoshadow(180, 55);
   } else if (y <= 550) {
-    ufoshadow(220, 75);
+    ufoshadow(190, 60);
   } else if (y <= 580) {
-    ufoshadow(200, 80);
+    ufoshadow(190, 60);
   }
 
   // PULSE
-  pulse(y);
-  ufo(y);
   // MOVEMENT
   if (keyIsDown(32)) {
-    y = y - (speed - 1);
+    y = y - speed;
+    pulse(true);
   } else if (keyIsDown(32) == false) {
     y = y + speed;
   } // Ensure that y doesn't exceed 600
   if (y >= 560) {
     y = 560;
   }
+  ufo(y);
 }
