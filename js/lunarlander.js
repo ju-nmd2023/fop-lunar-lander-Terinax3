@@ -1,7 +1,28 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
-
+function paw(x, y) {
+  noStroke();
+  fill(255, 200, 0);
+  ellipse(x, y, 25, 25);
+  function beans() {
+    ellipse(x - 24, y - 5, 12, 12);
+    ellipse(x - 15, y - 20, 12, 12);
+    ellipse(x + 3, y - 23, 12, 12);
+  }
+  beans();
+}
+function pawtwo(x, y) {
+  noStroke();
+  fill(153, 204, 255);
+  ellipse(x, y, 25, 25);
+  function beans() {
+    ellipse(x - 24, y - 5, 12, 12);
+    ellipse(x - 15, y - 20, 12, 12);
+    ellipse(x + 3, y - 23, 12, 12);
+  }
+  beans();
+}
 function commet(x, y) {
   push();
   stroke(255, 255, 255, 40);
@@ -188,7 +209,7 @@ function ufo(y) {
   //body
   fill(71, 71, 71);
   noStroke();
-  rect(width / 2 - 25, y - 25, 50, 16, 4);
+  ellipse(width / 2, y - 20, 60, 25, 4);
   pop();
 
   //glass
@@ -235,6 +256,7 @@ function ufo(y) {
   );
   endShape();
 }
+
 // UFO movement
 const speed = 5;
 let acceleration = 1.1;
@@ -244,10 +266,12 @@ let y = 200;
 let peep = {
   x: 200,
   y: 200,
+  speed: 1,
 };
 let yeet = {
   x: 600,
   y: 300,
+  speed: 1.5,
 };
 //BG
 let starX = [];
@@ -299,14 +323,8 @@ function draw() {
     }
   }
 
-  //COMMET
-  commet(peep.x, peep.y);
-  peep.x += 2.5;
-  peep.y += 2.5;
-
-  commet(yeet.x, yeet.y);
-  yeet.x += 2.5;
-  yeet.y += 2.5;
+  updateAndDisplayComet(peep);
+  updateAndDisplayComet(yeet);
 
   ufoshadow();
   if (y <= windowHeight / 2.3) {
@@ -330,7 +348,7 @@ function draw() {
   }
 
   // UFO MOVEMENT
-  if (keyIsDown(32)) {
+  if (keyIsDown(32) || mouseIsPressed) {
     y = y - speed;
     pulse(true);
   } else if (keyIsDown(32) == false) {
@@ -340,4 +358,21 @@ function draw() {
     y = windowHeight / 1.2;
   }
   ufo(y);
+  paw(mouseX, mouseY, 0.5);
+}
+
+function updateAndDisplayComet(comet) {
+  // Update comet position
+  comet.x += comet.speed;
+  comet.y += comet.speed;
+
+  // Check if comet is out of frame
+  if (comet.y > windowHeight) {
+    // Reset comet position to the top
+    comet.x = random(windowWidth);
+    comet.y = 0;
+  }
+
+  // Display comet
+  commet(comet.x, comet.y);
 }
