@@ -21,26 +21,28 @@ function bgcolor(bgY) {
   ellipse(500, bgY + 50, 1600, 800);
   fill(255, 196, 94);
   ellipse(500, 900, 1600, 800);
-  fill(240, 147, 71);
-  ellipse(500, 570, 200, 30);
 }
-
+function ufoshadow(w, h) {
+  fill(240, 147, 71);
+  ellipse(500, 570, w, h);
+}
 function pulse() {
-  stroke(97, 255, 115, 100);
-  strokeWeight(15);
-  noFill();
-  ellipse(500, y + 50, 80, 20);
-  ellipse(500, y + 60, 90, 20);
+  fill(97, 255, 115, 110);
+  noStroke();
+  beginShape();
+  vertex(460, y + 20);
+  bezierVertex(460, y + 20, 500, y + 120, 540, y + 20);
+  endShape();
 
-  ellipse(500, y + 90, 120, 30);
-  ellipse(500, y + 110, 140, 35);
+  beginShape();
+  vertex(440, y + 20);
+  bezierVertex(440, y + 20, 500, y + 200, 560, y + 20);
+  endShape();
 
-  ellipse(500, y + 150, 170, 40);
-  ellipse(500, y + 170, 180, 40);
-  /*
-    ellipse(500, y + 200, 220, 60);
-    ellipse(500, y + 220, 240, 70);
-    */
+  beginShape();
+  vertex(430, y + 20);
+  bezierVertex(430, y + 20, 500, y + 250, 570, y + 20);
+  endShape();
 }
 function ufo(y) {
   noStroke();
@@ -140,7 +142,9 @@ function ufo(y) {
 }
 // UFO movement
 const speed = 5;
+let acceleration = 1.1;
 let y = 200;
+
 // Commet in BG
 let peep = {
   x: 200,
@@ -167,6 +171,7 @@ for (let i = 0; i < 300; i++) {
 
 function draw() {
   noStroke();
+  clear();
   background(30, 30, 70);
 
   // STARTS
@@ -197,13 +202,35 @@ function draw() {
   peep.x += 2.5;
   peep.y += 2.5;
 
-  //PULSE
-  pulse();
-  ufo(y);
+  ufoshadow();
+  if (y <= 200) {
+    ufoshadow(0, 0);
+  } else if (y <= 250) {
+    ufoshadow(80, 25);
+  } else if (y <= 300) {
+    ufoshadow(130, 30);
+  } else if (y <= 350) {
+    ufoshadow(180, 40);
+  } else if (y <= 400) {
+    ufoshadow(200, 50);
+  } else if (y <= 450) {
+    ufoshadow(210, 65);
+  } else if (y <= 550) {
+    ufoshadow(220, 75);
+  } else if (y <= 580) {
+    ufoshadow(200, 80);
+  }
+
   // PULSE
-  if (keyIsDown(38)) {
-    y = y - speed;
-  } else if (keyIsDown(40)) {
+  pulse(y);
+  ufo(y);
+  // MOVEMENT
+  if (keyIsDown(32)) {
+    y = y - (speed - 1);
+  } else if (keyIsDown(32) == false) {
     y = y + speed;
+  } // Ensure that y doesn't exceed 600
+  if (y >= 560) {
+    y = 560;
   }
 }
