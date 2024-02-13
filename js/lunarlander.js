@@ -3,18 +3,15 @@ function setup() {
 }
 function paw(x, y) {
   noStroke();
-  fill(255, 200, 0);
-  ellipse(x, y, 25, 25);
-  function beans() {
-    ellipse(x - 24, y - 5, 12, 12);
-    ellipse(x - 15, y - 20, 12, 12);
-    ellipse(x + 3, y - 23, 12, 12);
+  if (mouseIsPressed || keyIsDown(32)) {
+    fill(97, 255, 115, 80);
+    ellipse(x - 5, y - 5, 45, 45);
+    ellipse(x - 5, y - 5, 60, 60);
+    ellipse(x - 5, y - 5, 75, 75);
+    fill(0, 255, 204);
+  } else {
+    fill(255, 153, 51);
   }
-  beans();
-}
-function pawtwo(x, y) {
-  noStroke();
-  fill(153, 204, 255);
   ellipse(x, y, 25, 25);
   function beans() {
     ellipse(x - 24, y - 5, 12, 12);
@@ -258,8 +255,10 @@ function ufo(y) {
 }
 
 // UFO movement
-const speed = 5;
-let acceleration = 1.1;
+const speed = 0;
+let velocity = 5;
+let acceleration = 0.5;
+let friction = 0.95; // Add friction to slow down the UFO gradually
 let y = 200;
 
 // COMMET
@@ -271,7 +270,12 @@ let peep = {
 let yeet = {
   x: 600,
   y: 300,
-  speed: 1.5,
+  speed: 1.8,
+};
+let charrizard = {
+  x: 1000,
+  y: 800,
+  speed: 0.7,
 };
 //BG
 let starX = [];
@@ -325,6 +329,7 @@ function draw() {
 
   updateAndDisplayComet(peep);
   updateAndDisplayComet(yeet);
+  updateAndDisplayComet(charrizard);
 
   ufoshadow();
   if (y <= windowHeight / 2.3) {
@@ -349,13 +354,20 @@ function draw() {
 
   // UFO MOVEMENT
   if (keyIsDown(32) || mouseIsPressed) {
-    y = y - speed;
+    velocity -= acceleration;
+    velocity *= friction;
     pulse(true);
-  } else if (keyIsDown(32) == false) {
-    y = y + speed;
-  } // Ensure that y doesn't exceed 600
+  } else {
+    velocity += acceleration;
+  }
+  y += velocity;
+
   if (y >= windowHeight / 1.2) {
     y = windowHeight / 1.2;
+    velocity = 0;
+  } else if (y <= 0) {
+    y = 0;
+    velocity = 0;
   }
   ufo(y);
   paw(mouseX, mouseY, 0.5);
