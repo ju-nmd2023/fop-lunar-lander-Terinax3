@@ -16,18 +16,18 @@ function commet(x, y) {
 function bgcolor(bgY) {
   noStroke();
   fill(25, 25, 66, 150);
-  ellipse(width / 2, bgY - 180, 1800, 1000);
+  ellipse(width / 2, bgY + 1600, 4000, 4500);
   fill(24, 24, 57, 100);
-  ellipse(width / 2, bgY - 100, 1500, 800);
+  ellipse(width / 2, bgY + 1510, 3500, 3700);
   fill(234, 221, 153, 20);
-  ellipse(width / 2, bgY + 50, 1600, 800);
+  ellipse(width / 2, bgY + 1500, 3200, 3300);
   fill(255, 196, 94);
-  ellipse(width / 2, 900, 1600, 800);
+  ellipse(width / 2, 2200, 3000, 3000);
 }
 
 function ufoshadow(w, h) {
   fill(240, 147, 71);
-  ellipse(width / 2, 570, w, h);
+  ellipse(width / 2, windowHeight / 1.2, w, h);
 }
 
 function pulse() {
@@ -240,10 +240,14 @@ const speed = 5;
 let acceleration = 1.1;
 let y = 200;
 
-// Commet in BG
+// COMMET
 let peep = {
   x: 200,
   y: 200,
+};
+let yeet = {
+  x: 600,
+  y: 300,
 };
 //BG
 let starX = [];
@@ -253,23 +257,26 @@ let starAlpha = [];
 let bgY = 800;
 let direction = "forward";
 
-for (let i = 0; i < 300; i++) {
-  const x = Math.floor(Math.random() * width);
-  const y = Math.floor(Math.random() * height);
-  const alpha = Math.random();
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  // Initialize stars
+  for (let i = 0; i < 300; i++) {
+    const x = Math.floor(Math.random() * width);
+    const y = Math.floor(Math.random() * height);
+    const alpha = Math.random();
 
-  starX.push(x);
-  starY.push(y);
-  starAlpha.push(alpha);
+    starX.push(x);
+    starY.push(y);
+    starAlpha.push(alpha);
+  }
 }
-//BG
 
 function draw() {
   noStroke();
   clear();
   background(30, 30, 70);
 
-  // STARTS
+  // STARTS BG
   for (let index in starX) {
     fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 1000);
     ellipse(starX[index], starY[index], 3);
@@ -279,13 +286,13 @@ function draw() {
   // BACKGROUND AURA
   bgcolor(bgY);
   if (direction === "forward") {
-    if (bgY < 820) {
+    if (bgY < 850) {
       bgY = bgY + 0.5;
     } else {
       direction = "backwards";
     }
   } else if (direction === "backwards") {
-    if (bgY > 780) {
+    if (bgY > 750) {
       bgY = bgY - 0.4;
     } else {
       direction = "forward";
@@ -297,37 +304,40 @@ function draw() {
   peep.x += 2.5;
   peep.y += 2.5;
 
+  commet(yeet.x, yeet.y);
+  yeet.x += 2.5;
+  yeet.y += 2.5;
+
   ufoshadow();
-  if (y <= 200) {
+  if (y <= windowHeight / 2.3) {
     ufoshadow(0, 0);
-  } else if (y <= 250) {
+  } else if (y <= windowHeight / 2) {
     ufoshadow(80, 30);
-  } else if (y <= 270) {
+  } else if (y <= windowHeight / 1.8) {
     ufoshadow(90, 35);
-  } else if (y <= 300) {
+  } else if (y <= windowHeight / 1.7) {
     ufoshadow(120, 40);
-  } else if (y <= 350) {
+  } else if (y <= windowHeight / 1.6) {
     ufoshadow(150, 45);
-  } else if (y <= 400) {
+  } else if (y <= windowHeight / 1.5) {
     ufoshadow(170, 50);
-  } else if (y <= 450) {
+  } else if (y <= windowHeight / 1.4) {
     ufoshadow(180, 55);
-  } else if (y <= 550) {
+  } else if (y <= windowHeight / 1.3) {
     ufoshadow(190, 60);
-  } else if (y <= 580) {
-    ufoshadow(190, 60);
+  } else if (y <= windowHeight / 1.2) {
+    ufoshadow(200, 60);
   }
 
-  // PULSE
-  // MOVEMENT
+  // UFO MOVEMENT
   if (keyIsDown(32)) {
     y = y - speed;
     pulse(true);
   } else if (keyIsDown(32) == false) {
     y = y + speed;
   } // Ensure that y doesn't exceed 600
-  if (y >= 560) {
-    y = 560;
+  if (y >= windowHeight / 1.2) {
+    y = windowHeight / 1.2;
   }
   ufo(y);
 }
