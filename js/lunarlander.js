@@ -1,6 +1,7 @@
 function setup() {
-  createCanvas(1000, 700);
+  createCanvas(windowWidth, windowHeight);
 }
+
 function commet(x, y) {
   push();
   stroke(255, 255, 255, 40);
@@ -11,133 +12,227 @@ function commet(x, y) {
   noStroke();
   ellipse(x, y, 15, 15);
 }
+
 function bgcolor(bgY) {
   noStroke();
   fill(25, 25, 66, 150);
-  ellipse(500, bgY - 180, 1800, 1000);
+  ellipse(width / 2, bgY - 180, 1800, 1000);
   fill(24, 24, 57, 100);
-  ellipse(500, bgY - 100, 1500, 800);
+  ellipse(width / 2, bgY - 100, 1500, 800);
   fill(234, 221, 153, 20);
-  ellipse(500, bgY + 50, 1600, 800);
+  ellipse(width / 2, bgY + 50, 1600, 800);
   fill(255, 196, 94);
-  ellipse(500, 900, 1600, 800);
+  ellipse(width / 2, 900, 1600, 800);
 }
+
 function ufoshadow(w, h) {
   fill(240, 147, 71);
-  ellipse(500, 570, w, h);
+  ellipse(width / 2, 570, w, h);
 }
+
 function pulse() {
   fill(97, 255, 115, 110);
   noStroke();
   beginShape();
-  vertex(460, y + 20);
-  bezierVertex(460, y + 20, 500, y + 120, 540, y + 20);
+  vertex(width / 2 - 40, y + 20);
+  bezierVertex(
+    width / 2 - 40,
+    y + 20,
+    width / 2,
+    y + 120,
+    width / 2 + 40,
+    y + 20
+  );
   endShape();
 
   beginShape();
-  vertex(440, y + 20);
-  bezierVertex(440, y + 20, 500, y + 200, 560, y + 20);
+  vertex(width / 2 - 60, y + 20);
+  bezierVertex(
+    width / 2 - 60,
+    y + 20,
+    width / 2,
+    y + 200,
+    width / 2 + 60,
+    y + 20
+  );
   endShape();
 
   beginShape();
-  vertex(430, y + 20);
-  bezierVertex(430, y + 20, 500, y + 250, 570, y + 20);
+  vertex(width / 2 - 70, y + 20);
+  bezierVertex(
+    width / 2 - 70,
+    y + 20,
+    width / 2,
+    y + 250,
+    width / 2 + 70,
+    y + 20
+  );
   endShape();
 }
+
 function ufo(y) {
   noStroke();
   fill(94, 255, 215);
-  ellipse(500, y, 200, 75);
+  ellipse(width / 2, y, 200, 75);
   //cockpit
   fill(107, 136, 153);
   beginShape();
-  vertex(390 + 50, y - 25);
-  bezierVertex(400 + 50, y - 35, 500 + 50, y - 35, 510 + 50, y - 25);
-  bezierVertex(510 + 50, y - 15, 435 + 50, y + 10, 390 + 50, y - 25);
+  vertex(width / 2 - 60, y - 25);
+  bezierVertex(
+    width / 2 - 50,
+    y - 35,
+    width / 2,
+    y - 35,
+    width / 2 + 50,
+    y - 25
+  );
+  bezierVertex(
+    width / 2 + 50,
+    y - 15,
+    width / 2 - 25,
+    y + 10,
+    width / 2 - 60,
+    y - 25
+  );
   endShape();
   //cat
   push();
   fill(71, 71, 71);
   noStroke();
-  rect(472, y - 65, 56, 40, 6); // Scaled values
+  rect(width / 2 - 28, y - 65, 56, 40, 6);
 
   //ear-right
   beginShape();
-  vertex(528, y - 59); // Scaled values
-  bezierVertex(522, y - 91, 512, y - 69, 511, y - 65); // Scaled values
+  vertex(width / 2 + 28, y - 59);
+  bezierVertex(
+    width / 2 + 22,
+    y - 91,
+    width / 2 + 12,
+    y - 69,
+    width / 2 + 11,
+    y - 65
+  );
   endShape();
 
   //ear-left
   beginShape();
-  vertex(472, y - 59); // Scaled values
-  bezierVertex(478, y - 91, 488, y - 69, 490, y - 65); // Scaled values
+  vertex(width / 2 - 28, y - 59);
+  bezierVertex(
+    width / 2 - 22,
+    y - 91,
+    width / 2 - 12,
+    y - 69,
+    width / 2 - 10,
+    y - 65
+  );
   endShape();
 
   //cheek-left
   beginShape();
-  vertex(472, y - 48); // Scaled values
-  bezierVertex(470, y - 47, 464, y - 45, 473, y - 28); // Scaled values
+  vertex(width / 2 - 28, y - 48);
+  bezierVertex(
+    width / 2 - 30,
+    y - 47,
+    width / 2 - 36,
+    y - 45,
+    width / 2 - 27,
+    y - 28
+  );
   endShape();
 
   //cheek-right
   beginShape();
-  vertex(528, y - 48); // Scaled values
-  bezierVertex(530, y - 47, 536, y - 45, 527, y - 28); // Scaled values
+  vertex(width / 2 + 28, y - 48);
+  bezierVertex(
+    width / 2 + 30,
+    y - 47,
+    width / 2 + 36,
+    y - 45,
+    width / 2 + 27,
+    y - 28
+  );
   endShape();
 
   //eye-left
   fill(255);
   noStroke();
-  ellipse(488, y - 50, 16, 14); // Scaled values
+  ellipse(width / 2 - 12, y - 50, 16, 14);
   fill(36, 189, 112);
   noStroke();
-  ellipse(489, y - 50, 11); // Scaled values
+  ellipse(width / 2 - 11, y - 50, 11);
   fill(255);
-  ellipse(491, y - 52, 6); // Scaled values
+  ellipse(width / 2 - 9, y - 52, 6);
 
   //eye-right
   noStroke();
-  ellipse(512, y - 50, 16, 14); // Scaled values
+  ellipse(width / 2 + 12, y - 50, 16, 14);
   fill(36, 189, 112);
   noStroke();
-  ellipse(511, y - 50, 11); // Scaled values
+  ellipse(width / 2 + 11, y - 50, 11);
   fill(255);
-  ellipse(513, y - 52, 6); // Scaled values
+  ellipse(width / 2 + 13, y - 52, 6);
 
   //mouth
   noFill();
   stroke(255, 255, 255);
-  strokeWeight(1.2); // Scaled value
+  strokeWeight(1.2);
   beginShape();
-  vertex(495, y - 39); // Scaled values
-  bezierVertex(495, y - 39, 497, y - 36, 500, y - 39); // Scaled values
+  vertex(width / 2 - 5, y - 39);
+  bezierVertex(width / 2 - 5, y - 39, width / 2 - 3, y - 36, width / 2, y - 39);
   endShape();
   beginShape();
-  vertex(500, y - 39); // Scaled values
-  bezierVertex(500, y - 39, 503, y - 36, 505, y - 39); // Scaled values
+  vertex(width / 2, y - 39);
+  bezierVertex(width / 2, y - 39, width / 2 + 3, y - 36, width / 2 + 5, y - 39);
   endShape();
 
   //body
   fill(71, 71, 71);
   noStroke();
-  rect(475, y - 25, 50, 16, 4); // Scaled values
+  rect(width / 2 - 25, y - 25, 50, 16, 4);
   pop();
-  //end-cat
 
   //glass
   fill(169, 196, 195, 50);
   noStroke();
   beginShape();
-  vertex(390 + 50, y - 25);
-  bezierVertex(400 + 50, y - 125, 500 + 50, y - 105, 510 + 50, y - 25);
-  bezierVertex(510 + 50, y - 5, 435 + 50, y - 10, 390 + 50, y - 25);
+  vertex(width / 2 - 60, y - 25);
+  bezierVertex(
+    width / 2 - 50,
+    y - 125,
+    width / 2 + 50,
+    y - 105,
+    width / 2 + 50,
+    y - 25
+  );
+  bezierVertex(
+    width / 2 + 50,
+    y - 5 + 50,
+    width / 2 - 25,
+    y - 10,
+    width / 2 - 60,
+    y - 25
+  );
   endShape();
   //reflection
   fill(255, 254, 217, 90);
   beginShape();
-  vertex(450 + 50, y - 8);
-  bezierVertex(400 + 50, y - 125, 500 + 50, y - 105, 510 + 50, y - 25);
-  bezierVertex(510 + 50, y - 24, 500 + 50, y - 7, 450 + 50, y - 8);
+  vertex(width / 2 - 10, y - 8);
+  bezierVertex(
+    width / 2 - 60,
+    y - 125,
+    width / 2 + 50,
+    y - 105,
+    width / 2 + 50,
+    y - 25
+  );
+  bezierVertex(
+    width / 2 + 50,
+    y - 24,
+    width / 2 + 50,
+    y - 7,
+    width / 2 - 10,
+    y - 8
+  );
   endShape();
 }
 // UFO movement
