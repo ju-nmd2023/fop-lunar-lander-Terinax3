@@ -252,10 +252,12 @@ function ufo(y) {
 }
 
 // UFO movement
+let startgame = false;
+
 const speed = 0;
 let velocity = 5;
 let acceleration = 0.5;
-let friction = 0.95; // Add friction to slow down the UFO gradually
+let friction = 0.95;
 let y = 200;
 
 // COMMET
@@ -298,16 +300,9 @@ function setup() {
   // Create an audio element
   const bgMusic = new Audio("js/intospace.mp3");
 
-  // Set the loop property to true for continuous playback
   bgMusic.loop = true;
-
-  // Set the volume (value between 0 and 1, adjust as needed)
   bgMusic.volume = 0.5;
-
-  // Use the preload attribute to help with loading
   bgMusic.preload = "auto";
-
-  // Add an event listener to handle errors during audio loading
   bgMusic.addEventListener("error", function (err) {
     console.error("Error loading audio:", err);
   });
@@ -376,23 +371,32 @@ function draw() {
     ufoshadow(200, 60);
   }
 
-  // UFO MOVEMENT
-  if (keyIsDown(32) || mouseIsPressed) {
-    velocity -= acceleration;
-    velocity *= friction;
-    pulse(true);
-  } else {
-    velocity += acceleration;
+  if (mouseIsPressed || keyIsDown(32)) {
+    startgame = true;
   }
-  y += velocity;
 
-  if (y >= windowHeight / 1.2) {
-    y = windowHeight / 1.2;
-    velocity = 0;
-  } else if (y <= 0) {
-    y = 0;
-    velocity = 0;
+  // UFO MOVEMENT
+  if (startgame) {
+    if (keyIsDown(32) || mouseIsPressed) {
+      velocity -= acceleration;
+      velocity *= friction;
+      pulse(true);
+    } else if (y >= 0) {
+      velocity += acceleration;
+    }
+
+    // Only update y position if there has been user interaction
+    y += velocity;
+
+    if (y >= windowHeight / 1.2) {
+      y = windowHeight / 1.2;
+      velocity = 0;
+    } else if (y <= 0) {
+      y = 0;
+      velocity = 0;
+    }
   }
+
   ufo(y);
   paw(mouseX, mouseY, 0.5);
 
@@ -401,21 +405,16 @@ function draw() {
   textSize(35);
   textStyle(BOLD);
   textFont("Comic Sans MS");
-  text("Pawsome Meowterspace", windowWidth / 2.5, windowHeight / 4);
+  text("Pawsome Meowterspace", 100, 150);
 }
 
 function updateAndDisplayComet(comet) {
-  // Update comet position
   comet.x += comet.speed;
   comet.y += comet.speed;
 
-  // Check if comet is out of frame
   if (comet.y > windowHeight) {
-    // Reset comet position to the top
     comet.x = random(windowWidth);
     comet.y = 0;
   }
-
-  // Display comet
   commet(comet.x, comet.y);
 }
