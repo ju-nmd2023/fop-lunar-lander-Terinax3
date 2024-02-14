@@ -356,9 +356,9 @@ function draw() {
     }
   }
 
-  updateAndDisplayComet(peep);
-  updateAndDisplayComet(yeet);
-  updateAndDisplayComet(charrizard);
+  commetshower(peep);
+  commetshower(yeet);
+  commetshower(charrizard);
 
   ufoshadow();
   if (y <= windowHeight / 2.3) {
@@ -415,7 +415,7 @@ function draw() {
   }
 }
 
-function updateAndDisplayComet(comet) {
+function commetshower(comet) {
   comet.x += comet.speed;
   comet.y += comet.speed;
 
