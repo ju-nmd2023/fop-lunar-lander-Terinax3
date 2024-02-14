@@ -403,7 +403,7 @@ function draw() {
 
   ufo(y);
 
-  image(title, 100, 100, 300, 80);
+  image(title, 120, 100, 350, 90);
   paw(mouseX, mouseY, 0.5);
 }
 
