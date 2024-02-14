@@ -1,7 +1,9 @@
 let title;
+
 function preload() {
   title = loadImage("js/pawsome.png");
 }
+
 function paw(x, y) {
   noStroke();
   if (mouseIsPressed || keyIsDown(32)) {
@@ -14,6 +16,7 @@ function paw(x, y) {
     fill(255, 153, 51);
   }
   ellipse(x, y, 25, 25);
+
   function beans() {
     ellipse(x - 24, y - 5, 12, 12);
     ellipse(x - 15, y - 20, 12, 12);
@@ -21,6 +24,7 @@ function paw(x, y) {
   }
   beans();
 }
+
 function commet(x, y) {
   push();
   stroke(255, 255, 255, 40);
@@ -44,12 +48,12 @@ function bgcolor(bgY) {
   ellipse(width / 2, 2200, 3000, 3000);
 }
 
-function ufoshadow(w, h) {
+function ufoshadow(w = 0, h = 0) {
   fill(240, 147, 71);
   ellipse(width / 2, windowHeight / 1.2, w, h);
 }
 
-function pulse() {
+function pulse(y) {
   fill(97, 255, 115, 110);
   noStroke();
   beginShape();
@@ -93,6 +97,7 @@ function ufo(y) {
   noStroke();
   fill(94, 255, 215);
   ellipse(width / 2, y, 200, 75);
+
   //cockpit
   fill(107, 136, 153);
   beginShape();
@@ -114,6 +119,7 @@ function ufo(y) {
     y - 25
   );
   endShape();
+
   //cat
   push();
   fill(71, 71, 71);
@@ -264,7 +270,7 @@ let acceleration = 0.5;
 let friction = 0.95;
 let y = 300;
 
-// COMMET
+// COMET
 let peep = {
   x: 200,
   y: 200,
@@ -280,7 +286,7 @@ let charrizard = {
   y: 800,
   speed: 0.7,
 };
-//BG
+// BG
 let starX = [];
 let starY = [];
 let starAlpha = [];
@@ -384,7 +390,7 @@ function draw() {
     if (keyIsDown(32) || mouseIsPressed) {
       velocity -= acceleration * 1.5;
       velocity *= friction;
-      pulse(true);
+      pulse(y);
     } else if (y >= 0) {
       velocity += acceleration;
     }
@@ -404,7 +410,7 @@ function draw() {
   ufo(y);
 
   image(title, 120, 100, 350, 90);
-  paw(mouseX, mouseY, 0.5);
+  paw(mouseX, mouseY);
 }
 
 function updateAndDisplayComet(comet) {
