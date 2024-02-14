@@ -1,3 +1,7 @@
+let title;
+function preload() {
+  title = loadImage("js/pawsome.png");
+}
 function paw(x, y) {
   noStroke();
   if (mouseIsPressed || keyIsDown(32)) {
@@ -378,7 +382,7 @@ function draw() {
   // UFO MOVEMENT
   if (startgame) {
     if (keyIsDown(32) || mouseIsPressed) {
-      velocity -= acceleration;
+      velocity -= acceleration * 1.5;
       velocity *= friction;
       pulse(true);
     } else if (y >= 0) {
@@ -391,21 +395,16 @@ function draw() {
     if (y >= windowHeight / 1.2) {
       y = windowHeight / 1.2;
       velocity = 0;
-    } else if (y <= 0) {
-      y = 0;
-      velocity = 0;
+    } else if (y <= -150) {
+      y = -150;
+      velocity = 10;
     }
   }
 
   ufo(y);
-  paw(mouseX, mouseY, 0.5);
 
-  //TITLE
-  fill(255, 196, 94);
-  textSize(35);
-  textStyle(BOLD);
-  textFont("Comic Sans MS");
-  text("Pawsome Meowterspace", 100, 150);
+  image(title, 100, 100, 300, 80);
+  paw(mouseX, mouseY, 0.5);
 }
 
 function updateAndDisplayComet(comet) {
