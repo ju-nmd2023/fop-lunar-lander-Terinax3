@@ -297,21 +297,30 @@ function setup() {
 
   // Create an audio element
   const bgMusic = new Audio("js/intospace.mp3");
+
+  // Set the loop property to true for continuous playback
   bgMusic.loop = true;
+
+  // Set the volume (value between 0 and 1, adjust as needed)
   bgMusic.volume = 0.5;
+
+  // Use the preload attribute to help with loading
   bgMusic.preload = "auto";
-  // Add an event listener to play the music when it's loaded
-  bgMusic.addEventListener("canplay", function () {
-    // Play the music
-    bgMusic.play();
-    console.log("Audio started playing.");
-  });
+
   // Add an event listener to handle errors during audio loading
   bgMusic.addEventListener("error", function (err) {
     console.error("Error loading audio:", err);
   });
-  // Log when setup is complete
-  console.log("Setup complete.");
+
+  // Add an event listener to play the music when it's loaded and on user interaction
+  window.addEventListener("click", function () {
+    // Play the music
+    bgMusic.play().catch(function (error) {
+      console.warn("Audio play failed:", error);
+    });
+    // Remove the click event listener to avoid multiple plays on subsequent clicks
+    window.removeEventListener("click", arguments.callee);
+  });
 }
 
 function draw() {
