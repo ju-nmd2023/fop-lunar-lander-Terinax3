@@ -395,6 +395,13 @@ function draw() {
   }
   ufo(y);
   paw(mouseX, mouseY, 0.5);
+
+  //TITLE
+  fill(255, 196, 94);
+  textSize(35);
+  textStyle(BOLD);
+  textFont("Comic Sans MS");
+  text("Pawsome Meowterspace", windowWidth / 2.5, windowHeight / 4);
 }
 
 function updateAndDisplayComet(comet) {
