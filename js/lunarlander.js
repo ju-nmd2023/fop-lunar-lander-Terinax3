@@ -264,11 +264,14 @@ function ufo(y) {
 // UFO movement
 let startgame = false;
 
-const speed = 0;
 let velocity = 5;
 let acceleration = 0.5;
-let friction = 0.95;
+let gravity = 0.5;
 let y = 300;
+
+// Vel = speed
+// acc = boost
+// grav = grav
 
 // COMET
 let peep = {
@@ -388,11 +391,10 @@ function draw() {
   // UFO MOVEMENT
   if (startgame) {
     if (keyIsDown(32) || mouseIsPressed) {
-      velocity -= acceleration * 1.5;
-      velocity *= friction;
+      velocity -= acceleration;
       pulse(y);
     } else if (y >= 0) {
-      velocity += acceleration;
+      velocity += gravity;
     }
 
     // Only update y position if there has been user interaction
