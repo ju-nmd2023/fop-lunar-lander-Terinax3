@@ -1,7 +1,7 @@
 let title;
 
 function preload() {
-  title = loadImage("js/pawsome.png");
+  title = loadImage("js/kittymew.png");
 }
 
 function paw(x, y) {
@@ -409,8 +409,10 @@ function draw() {
 
   ufo(y);
 
-  image(title, 120, 100, 350, 90);
   paw(mouseX, mouseY);
+  if (windowWidth > 700) {
+    image(title, 80, 80, 350, 236);
+  }
 }
 
 function updateAndDisplayComet(comet) {
