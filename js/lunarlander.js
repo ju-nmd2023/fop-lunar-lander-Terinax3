@@ -258,7 +258,7 @@ const speed = 0;
 let velocity = 5;
 let acceleration = 0.5;
 let friction = 0.95;
-let y = 200;
+let y = 300;
 
 // COMMET
 let peep = {
