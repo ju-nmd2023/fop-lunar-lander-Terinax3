@@ -35,9 +35,9 @@ function preload() {
 }
 
 function setup() {
-  //Canvas
+  // Canvas
   createCanvas(windowWidth, windowHeight);
-  window.addEventListener("resize", resizeCanvas);
+  window.addEventListener("resize", windowResized); //checking if window is resized
 
   // Initialize stars
   for (let i = 0; i < 300; i++) {
@@ -81,10 +81,12 @@ function draw() {
   drawGame();
   drawTitle();
   drawCursor();
+  messageWin();
+  messageLost();
 }
 
-function resizeCanvas() {
-  resizeCanvas(windowWidth, windowHeight);
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); //resize the window
 }
 
 function drawGeneral() {
@@ -476,4 +478,31 @@ function ufo(y) {
     y - 7
   );
   endShape();
+}
+
+function messageWin() {
+  fill(255, 255, 255);
+  textSize(30);
+  textFont("Comic Sans MS, Chalkboard, sans-serif");
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  text("Congrats, you landed safely!", windowWidth / 2, windowHeight / 2);
+}
+function messageLost() {
+  fill(255, 255, 255);
+  textSize(30);
+  textFont("Comic Sans MS, Chalkboard, sans-serif");
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  text("Game Over!", windowWidth / 2, windowHeight / 2);
+}
+
+function gameMetrics() {
+  if ((startgame = true)) {
+    if ((y = windowHeight / 1.2 && velocity <= 5)) {
+      messageWin();
+    } else {
+      messageLost();
+    }
+  }
 }
