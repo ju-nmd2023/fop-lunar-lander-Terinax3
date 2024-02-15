@@ -81,8 +81,6 @@ function draw() {
   drawGame();
   drawTitle();
   drawCursor();
-  messageWin();
-  messageLost();
 }
 
 function windowResized() {
