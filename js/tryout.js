@@ -292,8 +292,8 @@ function ufo(y) {
   fill(94, 255, 215);
 
   if (!startgame) {
-    // Levitation animation when the game is not started
-    let levitationdistance = 15; // Increased amplitude for a greater distance
+    // Levitate before the game start
+    let levitationdistance = 15;
     let levitate = levitationdistance * Math.sin(frameCount * 0.05);
     y += levitate;
   }
