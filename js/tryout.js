@@ -95,7 +95,13 @@ function drawGeneral() {
 
 function drawTitle() {
   if (windowWidth > 700) {
-    image(title, width / 20, height / 15, width * 0.16, height * 0.215);
+    //Scale the image but keep the ratio
+    var imageWidth = 300;
+    var imageHeight = imageWidth * (16 / 24);
+    var imageX = windowWidth / 18;
+    var imageY = windowHeight / 10;
+
+    image(title, imageX, imageY, imageWidth, imageHeight);
   }
 }
 function drawStars() {
