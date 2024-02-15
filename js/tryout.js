@@ -35,7 +35,10 @@ function preload() {
 }
 
 function setup() {
+  //Canvas
   createCanvas(windowWidth, windowHeight);
+  window.addEventListener("resize", resizeCanvas);
+
   // Initialize stars
   for (let i = 0; i < 300; i++) {
     const x = Math.floor(Math.random() * width);
@@ -78,6 +81,10 @@ function draw() {
   drawGame();
   drawTitle();
   drawCursor();
+}
+
+function resizeCanvas() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function drawGeneral() {
@@ -232,7 +239,7 @@ function bgcolor(bgY) {
 function moon() {
   noStroke();
   fill(255, 196, 94);
-  ellipse(width / 2, 2200, 3000, 3000);
+  ellipse(width / 2, height / 0.6, width * 1.25, height * 1.8);
 }
 
 function ufoshadow(w = 0, h = 0) {
