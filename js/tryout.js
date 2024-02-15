@@ -1,7 +1,7 @@
 // UFO movement
 let startgame = false;
 
-let y = 400;
+let y = 350;
 let velocity = 5;
 let acceleration = 0.5;
 let gravity = 0.5;
@@ -239,7 +239,11 @@ function bgcolor(bgY) {
 function moon() {
   noStroke();
   fill(255, 196, 94);
-  ellipse(width / 2, height / 0.6, width * 1.25, height * 1.8);
+  if (windowWidth >= 900) {
+    ellipse(width / 2, height / 0.6, width * 1.25, height * 1.8);
+  } else {
+    ellipse(width / 2, height / 0.6, width * 5, height * 1.8);
+  }
 }
 
 function ufoshadow(w = 0, h = 0) {
