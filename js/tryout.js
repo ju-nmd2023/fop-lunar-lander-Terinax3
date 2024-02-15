@@ -546,7 +546,7 @@ function drawGame() {
 
 function gameMetrics() {
   if (startgame) {
-    if (y === windowHeight / 1.2 && velocity < 0) {
+    if (y === windowHeight / 1.2 && velocity <= 0.1) {
       messageWin();
     } else if (y === windowHeight / 1.2 && velocity >= 5) {
       messageLost();
