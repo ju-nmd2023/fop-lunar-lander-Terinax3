@@ -404,11 +404,16 @@ function ufo(y) {
   bezierVertex(width / 2, y - 39, width / 2 + 3, y - 36, width / 2 + 5, y - 39);
   endShape();
 
-  //body
-  fill(71, 71, 71);
+  //scarf
+  fill(247, 147, 30);
   noStroke();
-  ellipse(width / 2, y - 20, 60, 25, 4);
+  rect(width / 2 - 28, y - 25, 58, 17, 10);
   pop();
+
+  //Paws
+  fill(50, 50, 50);
+  rect(width / 2 + 5, y - 18, 13, 10, 6);
+  rect(width / 2 - 10, y - 18, 13, 10, 6);
 
   //glass
   fill(169, 196, 195, 100);
