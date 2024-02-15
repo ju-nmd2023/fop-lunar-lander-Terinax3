@@ -31,7 +31,7 @@ let bgY = 800;
 let direction = "forward";
 
 function preload() {
-  title = loadImage("js/logo.png");
+  title = loadImage("js/logoz.png");
 } // Load the image before canvas was draw for smooth game
 
 function setup() {
@@ -86,6 +86,7 @@ function draw() {
   drawGame();
   drawTitle();
   drawCursor();
+  gameMetrics();
 }
 
 function windowResized() {
@@ -100,9 +101,9 @@ function drawGeneral() {
 
 function drawTitle() {
   if (!startgame) {
-    var imageWidth = 700;
-    var imageHeight = imageWidth * (16 / 23.5);
-    var imageX = windowWidth / 3.5;
+    var imageWidth = windowWidth * 0.4;
+    var imageHeight = imageWidth * (16 / 25);
+    var imageX = windowWidth / 2 - imageWidth / 2;
     var imageY = windowHeight / 6;
 
     image(title, imageX, imageY, imageWidth, imageHeight);
