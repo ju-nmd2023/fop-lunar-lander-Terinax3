@@ -170,41 +170,6 @@ function drawShadows() {
   }
 }
 
-function drawGame() {
-  if (mouseIsPressed || keyIsDown(32)) {
-    startgame = true;
-  } // UFO MOVEMENT
-  if (startgame) {
-    if (keyIsDown(32) || mouseIsPressed) {
-      velocity -= acceleration;
-      pulse(y);
-    } else if (y >= 0) {
-      velocity += gravity;
-    }
-    // Only update y position if there has been user interaction
-    y += velocity;
-
-    if (y >= windowHeight / 1.2) {
-      y = windowHeight / 1.2;
-      velocity = 0;
-    } else if (y <= -150) {
-      y = -150;
-      velocity = 10;
-    }
-  }
-  ufo(y);
-}
-
-function gameMetrics() {
-  if (startgame) {
-    if (y >= windowHeight / 1.2 && velocity < 0.1) {
-      messageWin();
-    } else if (y >= windowHeight / 1.2 && velocity >= 5) {
-      messageLost();
-    }
-  }
-}
-
 function drawCursor() {
   paw(mouseX, mouseY);
 }
