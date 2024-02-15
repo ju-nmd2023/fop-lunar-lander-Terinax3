@@ -31,8 +31,8 @@ let bgY = 800;
 let direction = "forward";
 
 function preload() {
-  title = loadImage("js/kittymew.png");
-}
+  title = loadImage("js/logoz.png");
+} // Load the image before canvas was draw for smooth game
 
 function setup() {
   // Canvas
@@ -60,15 +60,20 @@ function setup() {
     console.error("Error loading audio:", err);
   });
 
-  // Add an event listener to play the music when it's loaded and on user interaction
-  window.addEventListener("click", function () {
+  // Function to play the music and remove event listeners
+  function playMusic() {
     // Play the music
     bgMusic.play().catch(function (error) {
       console.warn("Audio play failed:", error);
     });
-    // Remove the click event listener to avoid multiple plays on subsequent clicks
-    window.removeEventListener("click", arguments.callee);
-  });
+    // Remove the event listeners to avoid multiple plays on subsequent interactions
+    window.removeEventListener("mousedown", playMusic);
+    window.removeEventListener("keydown", playMusic);
+  }
+
+  // Add event listeners for both "mousedown" and "keydown"
+  window.addEventListener("mousedown", playMusic);
+  window.addEventListener("keydown", playMusic);
 }
 
 function draw() {
@@ -81,6 +86,7 @@ function draw() {
   drawGame();
   drawTitle();
   drawCursor();
+  gameMetrics();
 }
 
 function windowResized() {
@@ -94,12 +100,11 @@ function drawGeneral() {
 }
 
 function drawTitle() {
-  if (windowWidth > 700) {
-    //Scale the image but keep the ratio
-    var imageWidth = 300;
-    var imageHeight = imageWidth * (16 / 24);
-    var imageX = windowWidth / 18;
-    var imageY = windowHeight / 10;
+  if (!startgame) {
+    var imageWidth = windowWidth * 0.4;
+    var imageHeight = imageWidth * (16 / 25);
+    var imageX = windowWidth / 2 - imageWidth / 2;
+    var imageY = windowHeight / 6;
 
     image(title, imageX, imageY, imageWidth, imageHeight);
   }
@@ -529,9 +534,9 @@ function drawGame() {
 
 function gameMetrics() {
   if (startgame) {
-    if (y >= windowHeight / 1.2 && velocity < 0.1) {
+    if (y === windowHeight / 1.2 && velocity < 0.1) {
       messageWin();
-    } else if (y >= windowHeight / 1.2 && velocity >= 5) {
+    } else if (y === windowHeight / 1.2 && velocity >= 5) {
       messageLost();
     }
   }
