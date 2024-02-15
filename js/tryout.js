@@ -294,6 +294,7 @@ function square() {
   stroke(0, 204, 153);
   strokeWeight(3);
   rect(windowWidth / 100, windowHeight / 2.96, 60, 45, 15);
+  pop();
 }
 
 function ufo(y) {
