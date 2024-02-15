@@ -251,38 +251,38 @@ function pulse(y) {
   fill(97, 255, 115, 110);
   noStroke();
   beginShape();
-  vertex(width / 2 - 40, y + 20);
+  vertex(width / 2 - 40, y + 5);
   bezierVertex(
     width / 2 - 40,
-    y + 20,
+    y + 5,
     width / 2,
-    y + 120,
+    y + 150,
     width / 2 + 40,
-    y + 20
+    y + 5
   );
   endShape();
 
   beginShape();
-  vertex(width / 2 - 60, y + 20);
+  vertex(width / 2 - 60, y + 5);
   bezierVertex(
     width / 2 - 60,
-    y + 20,
+    y + 5,
     width / 2,
-    y + 200,
+    y + 230,
     width / 2 + 60,
-    y + 20
+    y + 5
   );
   endShape();
 
   beginShape();
-  vertex(width / 2 - 70, y + 20);
+  vertex(width / 2 - 70, y + 5);
   bezierVertex(
     width / 2 - 70,
-    y + 20,
+    y + 5,
     width / 2,
-    y + 250,
+    y + 280,
     width / 2 + 70,
-    y + 20
+    y + 5
   );
   endShape();
 }
@@ -297,18 +297,18 @@ function ufo(y) {
   beginShape();
   vertex(width / 2 - 60, y - 25);
   bezierVertex(
-    width / 2 - 50,
-    y - 35,
+    width / 2 - 60,
+    y - 25,
     width / 2,
-    y - 35,
-    width / 2 + 50,
+    y - 45,
+    width / 2 + 60,
     y - 25
   );
   bezierVertex(
-    width / 2 + 50,
-    y - 15,
-    width / 2 - 25,
-    y + 10,
+    width / 2 + 60,
+    y - 10,
+    width / 2 - 30,
+    y + 5,
     width / 2 - 60,
     y - 25
   );
@@ -376,7 +376,7 @@ function ufo(y) {
   fill(255);
   noStroke();
   ellipse(width / 2 - 12, y - 50, 16, 14);
-  fill(36, 189, 112);
+  fill(204, 153, 255);
   noStroke();
   ellipse(width / 2 - 11, y - 50, 11);
   fill(255);
@@ -385,7 +385,7 @@ function ufo(y) {
   //eye-right
   noStroke();
   ellipse(width / 2 + 12, y - 50, 16, 14);
-  fill(36, 189, 112);
+  fill(204, 153, 255);
   noStroke();
   ellipse(width / 2 + 11, y - 50, 11);
   fill(255);
@@ -418,9 +418,9 @@ function ufo(y) {
   bezierVertex(
     width / 2 - 50,
     y - 125,
-    width / 2 + 50,
+    width / 2 + 60,
     y - 105,
-    width / 2 + 50,
+    width / 2 + 60,
     y - 25
   );
   bezierVertex(
@@ -433,24 +433,24 @@ function ufo(y) {
   );
   endShape();
   //reflection
-  fill(255, 254, 217, 90);
+  fill(255, 254, 217, 80);
   beginShape();
   vertex(width / 2 - 10, y - 8);
   bezierVertex(
     width / 2 - 60,
     y - 125,
-    width / 2 + 50,
-    y - 105,
-    width / 2 + 50,
-    y - 25
+    width / 2 + 60,
+    y - 98,
+    width / 2 + 55,
+    y - 17
   );
   bezierVertex(
-    width / 2 + 50,
-    y - 24,
-    width / 2 + 50,
-    y - 7,
-    width / 2 - 10,
-    y - 8
+    width / 2 + 55,
+    y - 17,
+    width / 2 + 40,
+    y - 9,
+    width / 2 - 0,
+    y - 7
   );
   endShape();
 }
