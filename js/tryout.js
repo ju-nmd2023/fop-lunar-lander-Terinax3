@@ -290,6 +290,14 @@ function pulse(y) {
 function ufo(y) {
   noStroke();
   fill(94, 255, 215);
+
+  if (!startgame) {
+    // Levitation animation when the game is not started
+    let levitationdistance = 15; // Increased amplitude for a greater distance
+    let levitate = levitationdistance * Math.sin(frameCount * 0.05);
+    y += levitate;
+  }
+  //ship
   ellipse(width / 2, y, 200, 75);
 
   //cockpit
