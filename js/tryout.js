@@ -100,15 +100,27 @@ function drawGeneral() {
 }
 
 function drawTitle() {
+  var imageWidth;
+  var imageHeight;
+  var imageX;
+  var imageY;
+
   if (!startgame) {
-    var imageWidth = windowWidth * 0.4;
-    var imageHeight = imageWidth * (16 / 25);
-    var imageX = windowWidth / 2 - imageWidth / 2;
-    var imageY = windowHeight / 6;
+    if (windowWidth < 700) {
+      imageWidth = windowWidth * 0.8;
+      imageY = windowHeight / 2 - imageHeight / 2; // Center vertically
+    } else {
+      imageWidth = windowWidth * 0.4;
+    }
+
+    imageHeight = imageWidth * (16 / 25);
+    imageX = windowWidth / 2 - imageWidth / 2;
+    imageY = windowHeight / 6;
 
     image(title, imageX, imageY, imageWidth, imageHeight);
   }
 }
+
 function drawStars() {
   // STARTS BG
   for (let index in starX) {
@@ -534,7 +546,7 @@ function drawGame() {
 
 function gameMetrics() {
   if (startgame) {
-    if (y === windowHeight / 1.2 && velocity < 0.1) {
+    if (y === windowHeight / 1.2 && velocity < 0) {
       messageWin();
     } else if (y === windowHeight / 1.2 && velocity >= 5) {
       messageLost();
