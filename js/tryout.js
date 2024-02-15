@@ -81,8 +81,6 @@ function draw() {
   drawGame();
   drawTitle();
   drawCursor();
-  messageWin();
-  messageLost();
 }
 
 function windowResized() {
@@ -158,8 +156,7 @@ function drawShadows() {
 function drawGame() {
   if (mouseIsPressed || keyIsDown(32)) {
     startgame = true;
-  }
-  // UFO MOVEMENT
+  } // UFO MOVEMENT
   if (startgame) {
     if (keyIsDown(32) || mouseIsPressed) {
       velocity -= acceleration;
@@ -179,6 +176,16 @@ function drawGame() {
     }
   }
   ufo(y);
+}
+
+function gameMetrics() {
+  if (startgame) {
+    if (y >= windowHeight / 1.2 && velocity < 0.1) {
+      messageWin();
+    } else if (y >= windowHeight / 1.2 && velocity >= 5) {
+      messageLost();
+    }
+  }
 }
 
 function drawCursor() {
@@ -480,6 +487,56 @@ function ufo(y) {
   endShape();
 }
 
+function draw() {
+  drawGeneral();
+  drawStars();
+  drawAura();
+  drawCommencecommet();
+  moon();
+  drawShadows();
+  drawGame();
+  drawTitle();
+  drawCursor();
+  gameMetrics(); // Call the gameMetrics function in your draw loop
+}
+
+function drawGame() {
+  if (mouseIsPressed || keyIsDown(32)) {
+    startgame = true;
+  }
+
+  // UFO MOVEMENT
+  if (startgame) {
+    if (keyIsDown(32) || mouseIsPressed) {
+      velocity -= acceleration;
+      pulse(y);
+    } else if (y >= 0) {
+      velocity += gravity;
+    }
+    // Only update y position if there has been user interaction
+    y += velocity;
+
+    if (y >= windowHeight / 1.2) {
+      y = windowHeight / 1.2;
+      velocity = 0;
+    } else if (y <= -150) {
+      y = -150;
+      velocity = 15; // Reset velocity if UFO goes above the window
+    }
+  }
+  ufo(y);
+}
+
+function gameMetrics() {
+  if (startgame) {
+    if (y >= windowHeight / 1.2 && velocity < 0.1) {
+      messageWin();
+    } else if (y >= windowHeight / 1.2 && velocity >= 5) {
+      messageLost();
+    }
+  }
+}
+
 function messageWin() {
   fill(255, 255, 255);
   textSize(30);
@@ -488,6 +545,7 @@ function messageWin() {
   textStyle(BOLD);
   text("Congrats, you landed safely!", windowWidth / 2, windowHeight / 2);
 }
+
 function messageLost() {
   fill(255, 255, 255);
   textSize(30);
@@ -495,14 +553,4 @@ function messageLost() {
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
   text("Game Over!", windowWidth / 2, windowHeight / 2);
-}
-
-function gameMetrics() {
-  if ((startgame = true)) {
-    if ((y = windowHeight / 1.2 && velocity <= 5)) {
-      messageWin();
-    } else {
-      messageLost();
-    }
-  }
 }
