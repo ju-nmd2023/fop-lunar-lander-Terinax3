@@ -500,7 +500,7 @@ function drawGame() {
 
     if (y >= windowHeight / 1.2) {
       y = windowHeight / 1.2;
-      velocity = 0;
+      acceleration = 0;
     } else if (y <= -150) {
       y = -150;
       velocity = 15; // Reset velocity if UFO goes above the window
@@ -511,9 +511,9 @@ function drawGame() {
 
 function gameMetrics() {
   if (startgame) {
-    if (y === windowHeight / 1.2 && velocity <= 0.1) {
+    if (y === windowHeight / 1.2 && velocity <= 6) {
       messageWin();
-    } else if (y === windowHeight / 1.2 && velocity >= 5) {
+    } else if (y === windowHeight / 1.2 && velocity >= 7) {
       messageLost();
     }
   }
@@ -521,7 +521,7 @@ function gameMetrics() {
 
 function messageWin() {
   fill(255, 255, 255);
-  textSize(30);
+  textSize(50);
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
@@ -530,7 +530,7 @@ function messageWin() {
 
 function messageLost() {
   fill(255, 255, 255);
-  textSize(30);
+  textSize(50);
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
