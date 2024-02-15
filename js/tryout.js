@@ -95,7 +95,7 @@ function drawGeneral() {
 
 function drawTitle() {
   if (windowWidth > 700) {
-    image(title, 80, 80, 350, 236);
+    image(title, width / 20, height / 15, width * 0.16, height * 0.215);
   }
 }
 function drawStars() {
