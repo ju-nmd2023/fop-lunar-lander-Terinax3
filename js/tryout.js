@@ -31,7 +31,7 @@ let bgY = 800;
 let direction = "forward";
 
 function preload() {
-  title = loadImage("js/logoz.png");
+  title = loadImage("js/title.png");
 } // Load the image before canvas was draw for smooth game
 
 function setup() {
@@ -288,6 +288,14 @@ function pulse(y) {
   endShape();
 }
 
+function square() {
+  push();
+  fill(94, 255, 215);
+  stroke(0, 204, 153);
+  strokeWeight(3);
+  rect(windowWidth / 100, windowHeight / 2.96, 60, 45, 15);
+}
+
 function ufo(y) {
   noStroke();
   fill(94, 255, 215);
@@ -475,6 +483,7 @@ function draw() {
   drawAura();
   drawCommencecommet();
   moon();
+  square();
   drawShadows();
   drawGame();
   drawTitle();
@@ -525,7 +534,7 @@ function messageWin() {
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
-  text("Congrats, you landed safely!", windowWidth / 2, windowHeight / 2);
+  text("Congrats, you landed safely!", windowWidth / 2, windowHeight / 2.5);
 }
 
 function messageLost() {
@@ -534,5 +543,5 @@ function messageLost() {
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
-  text("Game Over!", windowWidth / 2, windowHeight / 2);
+  text("Game Over!", windowWidth / 2, windowHeight / 2.5);
 }
