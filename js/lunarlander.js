@@ -7,6 +7,8 @@ let y = 350;
 let velocity = 10;
 let acceleration = 0.9;
 let gravity = 0.8;
+let restartTime = 0;
+const restartDelay = 900; // 900ms = 0.9 sec
 
 // COMET
 let peep = {
@@ -34,6 +36,7 @@ let direction = "forward";
 
 function preload() {
   title = loadImage("js/title.png");
+  titletwo = loadImage("js/titletwo.png");
 } // Load the image before canvas was draw for smooth game
 
 function setup() {
@@ -84,13 +87,13 @@ function draw() {
   drawAura();
   drawCommencecommet();
   moon();
-  dacube();
+  mistique();
   drawShadows();
   drawGame();
   drawTitle();
   drawCursor();
   gameMetrics();
-
+  //Display Messages
   if (gameResult === "win") {
     messageWin();
   } else if (gameResult === "lost") {
@@ -297,13 +300,13 @@ function pulse(y) {
   endShape();
 }
 
-function dacube() {
+function mistique() {
   push();
   fill(94, 255, 215);
   //stroke(0, 204, 153);
   noStroke();
   strokeWeight(3);
-  rect(windowWidth / 50, windowHeight / 2.96, 60, 60, 15);
+  ellipse(windowWidth / 10, windowHeight / 5, 60, 60, 15);
   pop();
 }
 
@@ -519,7 +522,6 @@ function drawGame() {
     } else if (y >= 0) {
       velocity += gravity;
     }
-    // Only update y position if there has been user interaction
     y += velocity;
 
     if (y >= windowHeight / 1.2) {
@@ -527,20 +529,36 @@ function drawGame() {
       acceleration = 0;
     } else if (y <= -150) {
       y = -150;
-      velocity = 15; // Reset velocity if UFO goes above the window
+      velocity = 15;
     }
   }
   ufo(y);
 }
-
 function gameMetrics() {
   if (startgame && gameResult === undefined) {
     if (y >= windowHeight / 1.2) {
       if (velocity <= 2) {
         gameResult = "win";
+        restartTime = millis();
       } else if (velocity >= 3) {
         gameResult = "lost";
+        restartTime = millis();
       }
     }
   }
+
+  if (gameResult != undefined) {
+    const elapsedTime = millis() - restartTime;
+    if (elapsedTime > restartDelay && (mouseIsPressed || keyIsDown(32))) {
+      resetGame();
+    }
+  }
+}
+
+function resetGame() {
+  startgame = false;
+  y = 350;
+  velocity = 10;
+  acceleration = 0.9;
+  gameResult = undefined;
 }
