@@ -119,17 +119,18 @@ function drawTitle() {
 
   if (!startgame) {
     if (windowWidth < 700) {
-      imageWidth = windowWidth * 0.8;
-      imageY = windowHeight / 2 - imageHeight / 2; // Center vertically
+      imageWidth = windowWidth * 0.7;
+      imageHeight = imageWidth * (16 / 15);
+      imageX = windowWidth / 2 - imageWidth / 2;
+      imageY = windowHeight / 2.5 - imageHeight / 2.5;
+      image(titletwo, imageX, imageY, imageWidth, imageHeight);
     } else {
       imageWidth = windowWidth * 0.4;
+      imageHeight = imageWidth * (16 / 25);
+      imageX = windowWidth / 2 - imageWidth / 2;
+      imageY = windowHeight / 6;
+      image(title, imageX, imageY, imageWidth, imageHeight);
     }
-
-    imageHeight = imageWidth * (16 / 25);
-    imageX = windowWidth / 2 - imageWidth / 2;
-    imageY = windowHeight / 6;
-
-    image(title, imageX, imageY, imageWidth, imageHeight);
   }
 }
 
