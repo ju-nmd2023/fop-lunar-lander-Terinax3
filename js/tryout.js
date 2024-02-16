@@ -1,4 +1,5 @@
 let gameResult = undefined;
+let bgMusic;
 
 // UFO movement
 let startgame = false;
@@ -52,22 +53,29 @@ function setup() {
     starAlpha.push(alpha);
   }
 
-  // Create an audio element
-  const bgMusic = new Audio("js/intospace.mp3");
+  // Function to initialize the audio element
+  function initAudio() {
+    bgMusic = new Audio("js/intospace.mp3");
+    bgMusic.loop = true;
+    bgMusic.volume = 0.5;
+    bgMusic.preload = "auto";
+    bgMusic.addEventListener("error", function (err) {
+      console.error("Error loading audio:", err);
+    });
+  }
 
-  bgMusic.loop = true;
-  bgMusic.volume = 0.5;
-  bgMusic.preload = "auto";
-  bgMusic.addEventListener("error", function (err) {
-    console.error("Error loading audio:", err);
-  });
-
-  // Function to play the music and remove event listeners
+  // Function to play the music
   function playMusic() {
+    if (!bgMusic) {
+      // If the audio element is not initialized, initialize it
+      initAudio();
+    }
+
     // Play the music
     bgMusic.play().catch(function (error) {
       console.warn("Audio play failed:", error);
     });
+
     // Remove the event listeners to avoid multiple plays on subsequent interactions
     window.removeEventListener("mousedown", playMusic);
     window.removeEventListener("keydown", playMusic);
