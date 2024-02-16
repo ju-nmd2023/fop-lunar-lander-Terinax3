@@ -4,8 +4,8 @@ let gameResult = undefined;
 let startgame = false;
 
 let y = 350;
-let velocity = 10;
-let acceleration = 0.9;
+let velocity = 5;
+let acceleration = 0.5;
 let gravity = 0.8;
 let restartTime = 0;
 const restartDelay = 900; // 900ms = 0.9 sec
@@ -498,7 +498,7 @@ function messageWin() {
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
-  text("Congrats, you landed safely!", windowWidth / 2, windowHeight / 2.5);
+  text("✨Yay, you did it!✨", windowWidth / 2, windowHeight / 2.5);
 }
 
 function messageLost() {
@@ -507,7 +507,7 @@ function messageLost() {
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
-  text("Game Over!", windowWidth / 2, windowHeight / 2.5);
+  text("💥Game Over!💥", windowWidth / 2, windowHeight / 2.5);
 }
 
 function drawGame() {
