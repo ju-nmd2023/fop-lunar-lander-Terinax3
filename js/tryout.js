@@ -1,10 +1,12 @@
+let gameResult = undefined;
+
 // UFO movement
 let startgame = false;
 
 let y = 350;
-let velocity = 5;
-let acceleration = 0.5;
-let gravity = 0.5;
+let velocity = 10;
+let acceleration = 0.9;
+let gravity = 0.8;
 
 // COMET
 let peep = {
@@ -88,6 +90,12 @@ function draw() {
   drawTitle();
   drawCursor();
   gameMetrics();
+
+  if (gameResult === "win") {
+    messageWin();
+  } else if (gameResult === "lost") {
+    messageLost();
+  }
 }
 
 function windowResized() {
@@ -481,7 +489,7 @@ function ufo(y) {
 }
 
 function messageWin() {
-  fill(255, 255, 255);
+  fill(255, 196, 94);
   textSize(50);
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
@@ -490,7 +498,7 @@ function messageWin() {
 }
 
 function messageLost() {
-  fill(255, 255, 255);
+  fill(255, 196, 94);
   textSize(50);
   textFont("Comic Sans MS, Chalkboard, sans-serif");
   textAlign(CENTER, CENTER);
@@ -526,11 +534,13 @@ function drawGame() {
 }
 
 function gameMetrics() {
-  if (startgame) {
-    if (y === windowHeight / 1.2 && velocity <= 6) {
-      messageWin();
-    } else if (y === windowHeight / 1.2 && velocity >= 7) {
-      messageLost();
+  if (startgame && gameResult === undefined) {
+    if (y >= windowHeight / 1.2) {
+      if (velocity <= 2) {
+        gameResult = "win";
+      } else if (velocity >= 3) {
+        gameResult = "lost";
+      }
     }
   }
 }
