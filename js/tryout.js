@@ -82,6 +82,7 @@ function draw() {
   drawAura();
   drawCommencecommet();
   moon();
+  dacube();
   drawShadows();
   drawGame();
   drawTitle();
@@ -288,12 +289,13 @@ function pulse(y) {
   endShape();
 }
 
-function square() {
+function dacube() {
   push();
   fill(94, 255, 215);
-  stroke(0, 204, 153);
+  //stroke(0, 204, 153);
+  noStroke();
   strokeWeight(3);
-  rect(windowWidth / 100, windowHeight / 2.96, 60, 45, 15);
+  rect(windowWidth / 50, windowHeight / 2.96, 60, 60, 15);
   pop();
 }
 
@@ -478,18 +480,22 @@ function ufo(y) {
   endShape();
 }
 
-function draw() {
-  drawGeneral();
-  drawStars();
-  drawAura();
-  drawCommencecommet();
-  moon();
-  square();
-  drawShadows();
-  drawGame();
-  drawTitle();
-  drawCursor();
-  gameMetrics(); // Call the gameMetrics function in your draw loop
+function messageWin() {
+  fill(255, 255, 255);
+  textSize(50);
+  textFont("Comic Sans MS, Chalkboard, sans-serif");
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  text("Congrats, you landed safely!", windowWidth / 2, windowHeight / 2.5);
+}
+
+function messageLost() {
+  fill(255, 255, 255);
+  textSize(50);
+  textFont("Comic Sans MS, Chalkboard, sans-serif");
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  text("Game Over!", windowWidth / 2, windowHeight / 2.5);
 }
 
 function drawGame() {
@@ -527,22 +533,4 @@ function gameMetrics() {
       messageLost();
     }
   }
-}
-
-function messageWin() {
-  fill(255, 255, 255);
-  textSize(50);
-  textFont("Comic Sans MS, Chalkboard, sans-serif");
-  textAlign(CENTER, CENTER);
-  textStyle(BOLD);
-  text("Congrats, you landed safely!", windowWidth / 2, windowHeight / 2.5);
-}
-
-function messageLost() {
-  fill(255, 255, 255);
-  textSize(50);
-  textFont("Comic Sans MS, Chalkboard, sans-serif");
-  textAlign(CENTER, CENTER);
-  textStyle(BOLD);
-  text("Game Over!", windowWidth / 2, windowHeight / 2.5);
 }
