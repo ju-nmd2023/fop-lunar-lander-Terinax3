@@ -1,4 +1,5 @@
 let gameResult = undefined;
+let buttonIsClicked = false; // for reset button
 
 // UFO movement
 let startgame = false;
@@ -99,6 +100,7 @@ function draw() {
   } else if (gameResult === "lost") {
     messageLost();
   }
+  drawResetBttn();
 }
 
 function windowResized() {
@@ -309,6 +311,25 @@ function mistique() {
   strokeWeight(3);
   ellipse(windowWidth / 10, windowHeight / 5, 60, 60, 15);
   pop();
+}
+
+function drawResetBttn() {
+  if (buttonIsClicked) {
+    resetGame();
+    console.log("clicked");
+  }
+}
+
+function mouseClicked() {
+  if (
+    mouseX > windowWidth / 10 &&
+    mouseX < windowWidth / 10 + 20 &&
+    mouseY > windowHeight / 20
+  ) {
+    buttonIsClicked = true;
+  } else {
+    buttonIsClicked = false;
+  }
 }
 
 function ufo(y) {
