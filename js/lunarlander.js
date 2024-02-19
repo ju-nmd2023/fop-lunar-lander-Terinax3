@@ -167,8 +167,8 @@ function drawShadows() {
   if (y <= windowHeight / 2.3) {
     ufoshadow(0, 0);
   } else {
-    const width = 85 + ((y - windowHeight / 2) / 30) * 11;
-    const distance = 20 + ((y - windowHeight / 2) / 30) * 5;
+    const width = 85 + ((y - windowHeight / 2) / 30) * 11; //change the size
+    const distance = 20 + ((y - windowHeight / 2) / 30) * 5; //depending on the distance
     ufoshadow(width, distance);
   }
 }
