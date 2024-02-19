@@ -41,6 +41,7 @@ function preload() {
 } // Load the image before canvas was draw for smooth game
 
 function setup() {
+  // Help by StackOverflow
   // Canvas
   createCanvas(windowWidth, windowHeight);
   window.addEventListener("resize", windowResized); //checking if window is resized
@@ -56,7 +57,7 @@ function setup() {
     starAlpha.push(alpha);
   }
 
-  // Create an audio element
+  // Create an audio element // HELP BY AI
   const bgMusic = new Audio("js/intospace.mp3");
 
   bgMusic.loop = true;
@@ -163,25 +164,12 @@ function drawAura() {
 }
 
 function drawShadows() {
-  ufoshadow();
   if (y <= windowHeight / 2.3) {
     ufoshadow(0, 0);
-  } else if (y <= windowHeight / 2) {
-    ufoshadow(80, 30);
-  } else if (y <= windowHeight / 1.8) {
-    ufoshadow(90, 35);
-  } else if (y <= windowHeight / 1.7) {
-    ufoshadow(120, 40);
-  } else if (y <= windowHeight / 1.6) {
-    ufoshadow(150, 45);
-  } else if (y <= windowHeight / 1.5) {
-    ufoshadow(170, 50);
-  } else if (y <= windowHeight / 1.4) {
-    ufoshadow(180, 55);
-  } else if (y <= windowHeight / 1.3) {
-    ufoshadow(190, 60);
-  } else if (y <= windowHeight / 1.2) {
-    ufoshadow(200, 60);
+  } else {
+    const width = 85 + ((y - windowHeight / 2) / 30) * 11;
+    const distance = 20 + ((y - windowHeight / 2) / 30) * 5;
+    ufoshadow(width, distance);
   }
 }
 
