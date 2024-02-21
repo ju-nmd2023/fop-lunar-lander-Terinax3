@@ -28,9 +28,11 @@ let charrizard = {
   speed: 0.7,
 };
 // BG
-let starX = [];
-let starY = [];
-let starAlpha = [];
+let stars = {
+  x: [],
+  y: [],
+  alpha: [],
+};
 
 let bgY = 800;
 let direction = "forward";
@@ -52,9 +54,9 @@ function setup() {
     const y = Math.floor(Math.random() * height);
     const alpha = Math.random();
 
-    starX.push(x);
-    starY.push(y);
-    starAlpha.push(alpha);
+    stars.x.push(x);
+    stars.y.push(y);
+    stars.alpha.push(alpha);
   }
 
   // Create an audio element // HELP BY AI
@@ -81,6 +83,7 @@ function setup() {
   // Add event listeners for both "mousedown" and "keydown"
   window.addEventListener("mousedown", playMusic);
   window.addEventListener("keydown", playMusic);
+  frameRate(60);
 }
 
 function draw() {
@@ -93,7 +96,6 @@ function draw() {
   drawShadows();
   drawGame();
   drawTitle();
-  drawCursor();
   gameMetrics();
   //Display Messages
   if (gameResult === "win") {
@@ -102,6 +104,7 @@ function draw() {
     messageLost();
   }
   drawResetBttn();
+  drawCursor();
 }
 
 function windowResized() {
@@ -139,10 +142,10 @@ function drawTitle() {
 
 function drawStars() {
   // STARTS BG
-  for (let index in starX) {
-    fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 1000);
-    ellipse(starX[index], starY[index], 3);
-    starAlpha[index] = starAlpha[index] + 0.01;
+  for (let index in stars.x) {
+    fill(255, 255, 255, Math.abs(Math.sin(stars.alpha[index])) * 1000);
+    ellipse(stars.x[index], stars.y[index], 3);
+    stars.alpha[index] = stars.alpha[index] + 0.01;
   }
 }
 
@@ -312,7 +315,8 @@ function mouseClicked() {
   if (
     mouseX > windowWidth / 10 &&
     mouseX < windowWidth / 10 + 20 &&
-    mouseY > windowHeight / 20
+    mouseY > windowHeight / 5.5 &&
+    mouseY > windowHeight / 5.5 - 10
   ) {
     buttonIsClicked = true;
   } else {
