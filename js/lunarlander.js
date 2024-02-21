@@ -546,7 +546,7 @@ function ufo(y) {
 function messageWin() {
   fill(255, 196, 94);
   textSize(50);
-  textFont("Comic Sans MS, Chalkboard, sans-serif");
+  textFont("Comic Sans MS, Marker Felt, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
   text("✨Yay, you did it!✨", windowWidth / 2, windowHeight / 2.5);
@@ -555,7 +555,7 @@ function messageWin() {
 function messageLost() {
   fill(255, 196, 94);
   textSize(50);
-  textFont("Comic Sans MS, Chalkboard, sans-serif");
+  textFont("Comic Sans MS, Marker Felt, sans-serif");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
   text("💥Game Over!💥", windowWidth / 2, windowHeight / 2.5);
