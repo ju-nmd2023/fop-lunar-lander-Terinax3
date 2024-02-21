@@ -232,11 +232,49 @@ function commet(x, y) {
 
 function bgcolor(bgY) {
   fill(25, 25, 66, 150);
-  ellipse(width / 2, bgY + 1600, 4000, 4500);
-  fill(24, 24, 57, 100);
-  ellipse(width / 2, bgY + 1510, 3500, 3700);
-  fill(234, 221, 153, 20);
-  ellipse(width / 2, bgY + 1500, 3200, 3300);
+  if (windowWidth > 900) {
+    ellipse(
+      width / 2,
+      bgY + windowHeight / 0.63,
+      windowWidth * 2.3,
+      windowHeight * 4.7
+    );
+    fill(24, 24, 57, 100);
+    ellipse(
+      width / 2,
+      bgY + windowHeight / 0.63,
+      windowWidth * 1.9,
+      windowHeight * 4
+    );
+    fill(234, 221, 153, 20);
+    ellipse(
+      width / 2,
+      bgY + windowHeight / 0.63,
+      windowWidth * 1.7,
+      windowHeight * 3.5
+    );
+  } else if (windowWidth <= 900) {
+    ellipse(
+      width / 2,
+      bgY + windowHeight / 0.63,
+      windowWidth * 8,
+      windowHeight * 4.7
+    );
+    fill(24, 24, 57, 100);
+    ellipse(
+      width / 2,
+      bgY + windowHeight / 0.62,
+      windowWidth * 8,
+      windowHeight * 4.15
+    );
+    fill(234, 221, 153, 20);
+    ellipse(
+      width / 2,
+      bgY + windowHeight / 0.62,
+      windowWidth * 7,
+      windowHeight * 3.7
+    );
+  }
 }
 
 function moon() {
