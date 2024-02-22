@@ -346,6 +346,7 @@ function drawResetBttn() {
   if (buttonIsClicked) {
     resetGame();
     console.log("clicked");
+    buttonIsClicked = false;
   }
 }
 
@@ -357,10 +358,13 @@ function mouseClicked() {
     mouseY > windowHeight / 5.5 - 10
   ) {
     buttonIsClicked = true;
-  } else {
-    buttonIsClicked = false;
   }
 }
+
+// distance 200px
+// distance / 200 = between 0 and 1
+// 1 - number between 0 and 1
+// shadow times our number
 
 function ufo(y) {
   noStroke();
