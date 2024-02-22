@@ -12,27 +12,23 @@ let restartTime = 0;
 const restartDelay = 900; // 900ms = 0.9 sec
 
 // COMET
-let peep = {
+let commetOne = {
   x: 200,
   y: 200,
   speed: 1,
 };
-let yeet = {
+let commetTwo = {
   x: 600,
   y: 300,
   speed: 1.8,
 };
-let charrizard = {
+commetThree = {
   x: 1000,
   y: 800,
   speed: 0.7,
 };
-// BG
-let stars = {
-  x: [],
-  y: [],
-  alpha: [],
-};
+//STARRY SKY INSPIRATION FROM LECTURES
+let stars = [];
 
 let bgY = 800;
 let direction = "forward";
@@ -49,14 +45,13 @@ function setup() {
   window.addEventListener("resize", windowResized); //checking if window is resized
 
   // Initialize stars
-  for (let i = 0; i < 300; i++) {
-    const x = Math.floor(Math.random() * width);
-    const y = Math.floor(Math.random() * height);
-    const alpha = Math.random();
-
-    stars.x.push(x);
-    stars.y.push(y);
-    stars.alpha.push(alpha);
+  for (let i = 0; i < 900; i++) {
+    const star = {
+      x: Math.floor(Math.random() * width),
+      y: Math.floor(Math.random() * height),
+      alpha: Math.random(),
+    };
+    stars.push(star);
   }
 
   // Create an audio element // HELP BY AI
@@ -92,7 +87,7 @@ function draw() {
   drawAura();
   drawCommencecommet();
   moon();
-  mistique();
+  cyanBttn();
   drawShadows();
   drawGame();
   drawTitle();
@@ -141,11 +136,11 @@ function drawTitle() {
 }
 
 function drawStars() {
-  // STARTS BG
-  for (let index in stars.x) {
-    fill(255, 255, 255, Math.abs(Math.sin(stars.alpha[index])) * 1000);
-    ellipse(stars.x[index], stars.y[index], 3);
-    stars.alpha[index] = stars.alpha[index] + 0.01;
+  noStroke();
+  for (let star of stars) {
+    fill(Math.abs(Math.sin(star.alpha)) * 1000);
+    ellipse(star.x, star.y, 3);
+    star.alpha = star.alpha + 0.01;
   }
 }
 
@@ -181,9 +176,9 @@ function drawCursor() {
 }
 
 function drawCommencecommet() {
-  commetshower(peep);
-  commetshower(yeet);
-  commetshower(charrizard);
+  commetshower(commetOne);
+  commetshower(commetTwo);
+  commetshower(commetThree);
 }
 
 function commetshower(comet) {
@@ -332,7 +327,7 @@ function pulse(y) {
   endShape();
 }
 
-function mistique() {
+function cyanBttn() {
   push();
   fill(94, 255, 215);
   //stroke(0, 204, 153);
