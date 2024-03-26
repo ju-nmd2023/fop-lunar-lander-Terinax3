@@ -45,7 +45,7 @@ function setup() {
   window.addEventListener("resize", windowResized); //checking if window is resized
 
   // Initialize stars
-  for (let i = 0; i < 900; i++) {
+  for (let i = 0; i < 300; i++) {
     const star = {
       x: Math.floor(Math.random() * width),
       y: Math.floor(Math.random() * height),
@@ -138,7 +138,7 @@ function drawTitle() {
 function drawStars() {
   noStroke();
   for (let star of stars) {
-    fill(Math.abs(Math.sin(star.alpha)) * 1000);
+    fill(255, 255, 255, Math.abs(Math.sin(star.alpha)) * 1000);
     ellipse(star.x, star.y, 3);
     star.alpha = star.alpha + 0.01;
   }
